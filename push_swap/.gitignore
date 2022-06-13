@@ -1,0 +1,7 @@
+*.sw?
+a.out
+*test*
+*.o
+*.a
+push_swap
+checker

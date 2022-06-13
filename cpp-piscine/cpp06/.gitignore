@@ -1,0 +1,7 @@
+.vscode
+.DS_Store
+*.o
+*.d
+ex00/convert
+ex01/ex01
+ex02/ex02

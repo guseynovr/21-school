@@ -1,0 +1,8 @@
+.DS_Store
+*.sw?
+*.o
+*.a
+a.out
+*test*
+fractol
+.vscode

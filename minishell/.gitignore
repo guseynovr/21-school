@@ -1,0 +1,17 @@
+.DS_Store
+.vscode
+.code
+.idea
+cmake-build-debug/
+CMakeLists.txt
+libft.a
+minishell
+*test*
+*.sw?
+*.o
+*.out
+src/aarson_main.c
+inc/aarson_minishell.h
+inc/libft.h
+dev
+minishell.dSYM

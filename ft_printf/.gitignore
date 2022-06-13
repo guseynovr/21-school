@@ -1,0 +1,11 @@
+.DS_Store
+*.out
+*.sw*
+tests.c
+*.orig
+*.o
+*TEST*
+*test*
+*.a
+pft_2019/
+rules

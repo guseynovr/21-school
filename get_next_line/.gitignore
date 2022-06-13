@@ -1,0 +1,9 @@
+*.out
+*.a
+*.?ml
+*.txt
+*debug*
+.idea
+*test*
+output
+*dSYM*

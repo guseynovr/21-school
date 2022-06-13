@@ -1,0 +1,9 @@
+.DS_Store
+.vscode
+*.o
+a.out
+*test*
+ex00/ex00
+ex01/ex01
+ex02/ex02
+bsp

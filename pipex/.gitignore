@@ -1,0 +1,7 @@
+.DS_Store
+*.o
+libft/libft.a
+*.sw?
+pipex
+bonus
+*test*

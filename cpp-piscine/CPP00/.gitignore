@@ -1,0 +1,10 @@
+.DS_Store
+.vscode
+*.sw?
+tests/*
+a.out
+*.o
+megaphone
+phonebook
+test_account
+log

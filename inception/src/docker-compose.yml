@@ -1,0 +1,88 @@
+version: '3'
+
+services:
+  mariadb:
+    build: requirements/mariadb
+    image: mariadb
+    container_name: mariadb
+    hostname: mariadb
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PW
+      WORDPRESS_DB_PASSWORD: $DB_PW
+    networks:
+      - inception-network
+    restart: always
+
+  wordpress:
+    build: requirements/wordpress
+    image: wordpress
+    container_name: wordpress
+    hostname: wordpress
+    volumes:
+      - wpdata:/var/www/html
+    depends_on:
+      - mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PW
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_NAME: $DB_NAME
+      WORDPRESS_DB_USER: $DB_USER
+      WORDPRESS_DB_PASSWORD: $DB_PW
+      WORDPRESS_TABLE_PREFIX: $DB_TABLE_PREFIX
+      WORDPRESS_ADMIN: $WP_ADMIN
+      WORDPRESS_ADMIN_PW: $WP_ADMIN_PW
+      WORDPRESS_ADMIN_EMAIL: $WP_ADMIN_EMAIL
+      WORDPRESS_GUEST_PW: $WP_GUEST_PW
+    networks:
+      - inception-network
+    # healthcheck:
+    #   test: ["CMD", "mysql", "-h mariadb", "-u$DB_USER", "-p$DB_PW",  "-e", ";"]
+    #   timeout: 10s
+    #   retries: 3
+    restart: always
+
+  nginx:
+    build: requirements/nginx
+    image: nginx:local
+    container_name: nginx
+    hostname: nginx
+    volumes:
+      - wpdata:/var/www/html
+    ports:
+      - 443:443
+    depends_on:
+      - wordpress
+    networks:
+      - inception-network
+    restart: always
+
+  adminer:
+    build: requirements/adminer
+    image: adminer
+    container_name: adminer
+    hostname: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - inception-network
+    restart: always
+
+volumes:
+  dbdata:
+    name: db
+    driver_opts:
+      type: none
+      device:  $DATA_PATH/mysql
+      o: bind
+  wpdata:
+    name: wp
+    driver_opts:
+      type: none
+      device: $DATA_PATH/html
+      o: bind
+
+networks:
+  inception-network:
+    name: inception-network

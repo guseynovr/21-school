@@ -1,0 +1,10 @@
+.DS_Store
+*.sw*
+main.c
+*.out
+*.out.dSYM
+tests.c
+-Wno-framework-include-private-from-public
+*.o
+libft.a
+*.orig
